@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 
 public class ImagePanel extends HBox
 {
-  String colorst;
+  String colorst="000000";
   private HBox hb;
   private Group image=new Group();
   private Graphics graphics;
@@ -94,7 +94,7 @@ colorst="000000";
 public void drawOval(int x, int y, int width, int height)
 {
 Ellipse oval = new Ellipse(x,y,width,height);
-oval.setStroke(Paint.valueOf("colorst"));
+oval.setStroke(Paint.valueOf(colorst));
 oval.setFill(Paint.valueOf("00000000"));
 image.getChildren().add(oval);
 }
