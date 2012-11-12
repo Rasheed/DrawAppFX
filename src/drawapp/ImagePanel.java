@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Ellipse;
@@ -29,6 +30,11 @@ public class ImagePanel extends HBox
     this.add(image);
     this.setPrefHeight(height);
     this.setPrefWidth(width);
+    ImagePanel.setHgrow(image, Priority.NEVER);
+    //ImagePanel.setgrow(image, Priority.NEVER);
+
+    //this.setMaxHeight(height);
+    //this.setMaxWidth(width);
   }
   
   public void add(Node g)
@@ -97,5 +103,6 @@ Ellipse oval = new Ellipse(x,y,width,height);
 oval.setStroke(Paint.valueOf(colorst));
 oval.setFill(Paint.valueOf("00000000"));
 image.getChildren().add(oval);
+colorst="000000";
 }
 }

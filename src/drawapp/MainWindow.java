@@ -1,8 +1,10 @@
 package drawapp;
 
 import java.awt.Color;
+import java.io.File;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -11,12 +13,17 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.SnapshotResult;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.layout.*;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -26,8 +33,8 @@ public class MainWindow {
 
     public static final int DEFAULT_WIDTH = 600;
     public static final int DEFAULT_HEIGHT = 600;
-    private int width;
-    private int height;
+
+    Scene scene;
     ImagePanel imageRegion;
     ImagePanel pictureRegion2 = new ImagePanel(600,50);
     String cssDefault = "-fx-border-color: black;\n"
@@ -46,7 +53,7 @@ public class MainWindow {
     public MainWindow(Stage primaryStage, int width, int height) {
         primaryStage.setTitle("DrawApp");
         Group root = new Group();
-        Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         GridPane gridpane = buildGUI();
         root.getChildren().add(gridpane);
         primaryStage.setScene(scene);
@@ -79,9 +86,27 @@ public class MainWindow {
                 Platform.exit();
             }
         });
+        Button saveButton = new Button("Save");
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                WritableImage wim = new WritableImage(300, 250);
+                imageRegion.snapshot(null, wim);                
+                File file = new File("ImageWithEffect.png");
+                 try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(wim, null), "png", file);
+                 } catch (Exception s) 
+                 {
+                }
+            }
+        });
+        
         pictureRegion2.add(nextButton);
         pictureRegion2.add(closeButton);
+        pictureRegion2.add(saveButton);
         gridpane.add(pictureRegion2, 0, 2);
+        
+        
 
         return gridpane;
     }

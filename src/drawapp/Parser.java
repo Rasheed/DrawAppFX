@@ -196,7 +196,7 @@ public class Parser
       throw new ParseException("Missing Integer value");
   }
 
-   public void parseButton(Button b) throws IOException 
+   public void parseButton(final Button b) throws IOException 
     {
         String line = reader.readLine();
         final ArrayList<String> asl=new ArrayList<String>();
@@ -213,6 +213,10 @@ public class Parser
                 {
                     parseLine(asl.get(i));
                     i++;
+                    if(i==asl.size())
+                    {
+                        b.setDisable(true);                
+                    }                 
                 } catch (ParseException ex) { 
                     Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
                 }        
