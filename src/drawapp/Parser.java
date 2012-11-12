@@ -8,13 +8,20 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 public class Parser
 {
   private BufferedReader reader;
   private ImagePanel image;
   private MainWindow frame;
+  private int i=0;
 
   public Parser(Reader reader, ImagePanel image, MainWindow frame)
   {
@@ -23,13 +30,14 @@ public class Parser
     this.frame = frame;
   }
 
-  public void parse()
+  /*public void parse()
   {
     try
     {
+      int count=0;
       String line = reader.readLine();
       while (line != null)
-      {
+      { 
         parseLine(line);
         line = reader.readLine();
       }
@@ -44,8 +52,9 @@ public class Parser
       frame.postMessage("Parse Exception: " + e.getMessage());
       return;
     }
+    ParseButton(this.reader,line);
     frame.postMessage("Drawing completed");
-  }
+  }*/
 
   private void parseLine(String line) throws ParseException
   {
@@ -186,4 +195,28 @@ public class Parser
     else
       throw new ParseException("Missing Integer value");
   }
+
+   public void parseButton(Button b) throws IOException 
+    {
+        String line = reader.readLine();
+        final ArrayList<String> asl=new ArrayList<String>();
+        while (line != null)
+        { 
+         asl.add(line);
+         line = reader.readLine();
+        }
+        b.setOnAction(new EventHandler<ActionEvent>() 
+        {
+            public void handle(ActionEvent event) 
+            {
+                try 
+                {
+                    parseLine(asl.get(i));
+                    i++;
+                } catch (ParseException ex) { 
+                    Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
+                }        
+            }
+        });
+    }
 }

@@ -6,6 +6,7 @@ import java.io.Reader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import drawapp.ImagePanel;
+import java.io.IOException;
 
 public class DrawApp extends Application {
     public static void main(String[] args) { 
@@ -13,13 +14,14 @@ public class DrawApp extends Application {
     }
 
     @Override
-    public void start(Stage stage)
+    public void start(Stage stage) throws IOException
     {
         MainWindow mw=new MainWindow(stage);
         ImagePanel imagePanel = mw.getImagePanel();
         Reader reader = new InputStreamReader(System.in);
         Parser parser = new Parser(reader,imagePanel,mw);
-        parser.parse();
+        parser.parseButton(mw.getNext());
+        //parser.parse();
         stage.show();
     }
     

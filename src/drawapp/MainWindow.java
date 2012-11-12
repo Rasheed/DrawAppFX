@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.layout.*;
 
@@ -28,12 +29,15 @@ public class MainWindow {
     private int width;
     private int height;
     ImagePanel imageRegion;
+    ImagePanel pictureRegion2 = new ImagePanel(600,50);
     String cssDefault = "-fx-border-color: black;\n"
                 + "-fx-border-insets: 5;\n"
                 + "-fx-border-width: 0;\n";
     
     private TextArea textarea = new TextArea();
     private Button closeButton = new Button("CloseWindow");
+    Button nextButton = new Button("Next");
+
 
     public MainWindow(Stage stage) {
         this(stage, DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -66,7 +70,6 @@ public class MainWindow {
         postMessage("Drawing Completed!!");
         
 
-        ImagePanel pictureRegion2 = new ImagePanel(600,50);
         pictureRegion2.setAlignment(Pos.CENTER);
         pictureRegion2.setBackgroundColour("#E8E8E8");
 
@@ -76,10 +79,16 @@ public class MainWindow {
                 Platform.exit();
             }
         });
+        pictureRegion2.add(nextButton);
         pictureRegion2.add(closeButton);
         gridpane.add(pictureRegion2, 0, 2);
 
         return gridpane;
+    }
+    
+    public Button getNext()
+    {
+        return nextButton;
     }
 
     public ImagePanel getImagePanel() 
