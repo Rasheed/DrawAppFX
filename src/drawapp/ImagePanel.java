@@ -82,6 +82,16 @@ public void setColour(Color colour)
     image.getChildren().add(line);
     colorst=Color.BLACK;
   }
+  
+  public void drawRoundRect(int x1, int y1, int x2, int y2,int r)
+  {
+      Rectangle rect = new Rectangle(x1,y1,x2,y2);
+      rect.setArcWidth(r);
+      rect.setArcHeight(r);
+      rect.setStroke(Paint.valueOf("000000"));
+      rect.setFill(Paint.valueOf("00000000"));
+      image.getChildren().add(rect);
+  }
 public void drawRect(int x1, int y1, int x2, int y2)
 {
 Rectangle rect = new Rectangle(x1,y1,x2,y2);
@@ -126,7 +136,6 @@ Image image4 = new Image("file:"+name, width, height, false, false);
  imgView.setTranslateX(x);
  imgView.setTranslateY(y);
  image.getChildren().add(imgView);
-//image.getChildren().add(oval);
 }
 
 }

@@ -68,10 +68,28 @@ public class Parser
     if (command.equals("DA")) { drawArc(line.substring(2, line.length())); return; }
     if (command.equals("DO")) { drawOval(line.substring(2, line.length())); return; }
     if (command.equals("SG")) { setGradient(line.substring(2, line.length())); return;}
-    if (command.equals("DI")) { drawImage(line.substring(3, line.length())); return; 
-    }
+    if (command.equals("DI")) { drawImage(line.substring(3, line.length())); return; }
+    if (command.equals("RR")) { drawRoundRect(line.substring(2, line.length())); return; }
 
     throw new ParseException("Unknown drawing command");
+  }
+  
+  private void drawRoundRect(String args) throws ParseException
+  {
+    int x1 = -1;
+    int y1 = -1;
+    int x2 = -1;
+    int y2 = -1;
+    int r=-1;
+    
+    StringTokenizer tokenizer = new StringTokenizer(args);
+    x1 = getInteger(tokenizer);
+    y1 = getInteger(tokenizer);
+    x2 = getInteger(tokenizer);
+    y2 = getInteger(tokenizer);
+    r= getInteger(tokenizer);
+    if ((x1 < 0)||(y1 < 0)||(x2 < 0)||(y2 < 0)) throw new ParseException("Invalid values for Rectangle command");
+    image.drawRoundRect(x1, y1, x2, y2,r);
   }
   
   private void drawImage(String args) throws ParseException

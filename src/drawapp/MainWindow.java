@@ -68,7 +68,7 @@ public class MainWindow {
         //Adding ImagePanel
         imageRegion = new ImagePanel(600,400);
         imageRegion.setStyle(cssDefault);
-        //imageRegion.drawImage(50,50,500,500,"Meek.jpeg");
+        //imageRegion.drawRoundRect(50,50,70,70,10);//TESTER
         gridpane.add(imageRegion, 0, 0);
         // Text area for CSS editor 
         textarea.setWrapText(true);
