@@ -3,6 +3,8 @@ package drawapp;
 import java.awt.Graphics;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
@@ -114,6 +116,17 @@ oval.setStroke(colorst);
 oval.setFill(Paint.valueOf("00000000"));
 image.getChildren().add(oval);
 colorst=Color.BLACK;
+}
+
+public void drawImage(int x, int y, int width, int height,String name)
+{
+ 
+Image image4 = new Image("file:"+name, width, height, false, false);
+ ImageView imgView = new ImageView(image4);
+ imgView.setTranslateX(x);
+ imgView.setTranslateY(y);
+ image.getChildren().add(imgView);
+//image.getChildren().add(oval);
 }
 
 }

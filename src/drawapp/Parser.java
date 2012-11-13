@@ -67,9 +67,29 @@ public class Parser
     if (command.equals("DS")) { drawString(line.substring(3, line.length())); return; }
     if (command.equals("DA")) { drawArc(line.substring(2, line.length())); return; }
     if (command.equals("DO")) { drawOval(line.substring(2, line.length())); return; }
-    if (command.equals("SG")) { setGradient(line.substring(2, line.length())); return; }
+    if (command.equals("SG")) { setGradient(line.substring(2, line.length())); return;}
+    if (command.equals("DI")) { drawImage(line.substring(3, line.length())); return; 
+    }
 
     throw new ParseException("Unknown drawing command");
+  }
+  
+  private void drawImage(String args) throws ParseException
+  {
+    int x = -1;
+    int y = -1 ;
+    int width=-1;
+    int height=-1;
+    String s = "";
+    StringTokenizer tokenizer = new StringTokenizer(args);
+    x = getInteger(tokenizer);
+    y = getInteger(tokenizer);
+    if ((x < 0)||(y < 0)) throw new ParseException("Invalid values for Draw Image coommand");
+    int position = args.indexOf("@");
+    if (position == -1) throw new ParseException("DrawString string is missing");
+    s = args.substring(position+1,args.length());
+    System.out.println(s);
+    image.drawImage(x,y,width,height,s);
   }
 
   private void drawLine(String args) throws ParseException
