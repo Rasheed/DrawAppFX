@@ -196,8 +196,9 @@ public class Parser
       throw new ParseException("Missing Integer value");
   }
 
-   public void parseButton(final Button b) throws IOException 
+   public void parseWithButtons(final Button b,final Button complete) throws IOException 
     {
+        frame.postMessage("Press Next to draw image step by step or Complete to draw the complete image");
         String line = reader.readLine();
         final ArrayList<String> asl=new ArrayList<String>();
         while (line != null)
@@ -211,12 +212,32 @@ public class Parser
             {
                 try 
                 {
+                    frame.postMessage("Press Next to continue to draw image");
                     parseLine(asl.get(i));
                     i++;
                     if(i==asl.size())
                     {
+                        frame.postMessage("Drawing completed");
                         b.setDisable(true);                
                     }                 
+                } catch (ParseException ex) { 
+                    Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
+                }        
+            }
+        });
+         complete.setOnAction(new EventHandler<ActionEvent>() 
+        {
+            public void handle(ActionEvent event) 
+            {
+                try 
+                {
+                    for(String line:asl)
+                    {
+                      parseLine(line);
+                    }
+                    frame.postMessage("Drawing completed");
+                    b.setDisable(true);
+                    complete.setDisable(true);                
                 } catch (ParseException ex) { 
                     Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
                 }        

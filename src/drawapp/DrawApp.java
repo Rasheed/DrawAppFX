@@ -20,7 +20,7 @@ public class DrawApp extends Application {
         ImagePanel imagePanel = mw.getImagePanel();
         Reader reader = new InputStreamReader(System.in);
         Parser parser = new Parser(reader,imagePanel,mw);
-        parser.parseButton(mw.getNext());
+        parser.parseWithButtons(mw.getNext(),mw.getComplete());
         //parser.parse();
         stage.show();
     }

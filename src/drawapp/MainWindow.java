@@ -44,6 +44,7 @@ public class MainWindow {
     private TextArea textarea = new TextArea();
     private Button closeButton = new Button("CloseWindow");
     Button nextButton = new Button("Next");
+    Button completeButton = new Button("Complete");
 
 
     public MainWindow(Stage stage) {
@@ -100,7 +101,7 @@ public class MainWindow {
                 }
             }
         });
-        
+        pictureRegion2.add(completeButton);
         pictureRegion2.add(nextButton);
         pictureRegion2.add(closeButton);
         pictureRegion2.add(saveButton);
@@ -114,6 +115,10 @@ public class MainWindow {
     public Button getNext()
     {
         return nextButton;
+    }
+    public Button getComplete()
+    {
+        return completeButton;
     }
 
     public ImagePanel getImagePanel() 
