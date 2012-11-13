@@ -71,9 +71,34 @@ public class Parser
     if (command.equals("SG")) { setGradient(line.substring(2, line.length())); return;}
     if (command.equals("DI")) { drawImage(line.substring(3, line.length())); return; }
     if (command.equals("RR")) { drawRoundRect(line.substring(2, line.length())); return; }
-    if (command.equals("XX")) { fillRoundRect(line.substring(2, line.length())); return; }
+    if (command.equals("RF")) { fillRoundRect(line.substring(2, line.length())); return; }
+    if (command.equals("ST")) { startTurtle(line.substring(2, line.length())); return; }
+    if (command.equals("FT")) { forward(line.substring(2, line.length())); return; }
+    
 
     throw new ParseException("Unknown drawing command");
+  }
+  
+  private void forward(String args) throws ParseException
+  {
+    int d = -1;
+    StringTokenizer tokenizer = new StringTokenizer(args);
+    d = getInteger(tokenizer);
+    if (d < 0) throw new ParseException("Invalid values for Line command");
+    image.forward(d);
+  }
+  
+  private void startTurtle(String args) throws ParseException
+  {
+    int x1 = -1;
+    int y1 = -1;
+    int r = -1;
+    StringTokenizer tokenizer = new StringTokenizer(args);
+    x1 = getInteger(tokenizer);
+    y1 = getInteger(tokenizer);
+    r = getInteger(tokenizer);
+    if ((x1 < 0)||(y1 < 0)||(r < 0)) throw new ParseException("Invalid values for Line command");
+    image.startTurtle(x1,y1,r);
   }
   
   private void drawRoundRect(String args) throws ParseException
@@ -126,7 +151,7 @@ public class Parser
     height=getInteger(tokenizer);
     if ((x < 0)||(y < 0)) throw new ParseException("Invalid values for Draw Image coommand");
     int position = args.indexOf("@");
-    if (position == -1) throw new ParseException("DrawString string is missing");
+    if (position == -1) throw new ParseException("DrawImage image path is missing");
     s = args.substring(position+1,args.length());
     System.out.println(s);
     image.drawImage(x,y,width,height,s);

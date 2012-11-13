@@ -68,7 +68,9 @@ public class MainWindow {
         //Adding ImagePanel
         imageRegion = new ImagePanel(600,400);
         imageRegion.setStyle(cssDefault);
-        //imageRegion.drawRoundRect(50,50,70,70,10);//TESTER
+        imageRegion.startTurtle(50, 20, 30);//TESTER
+        //imageRegion.turnLeft(30);
+        imageRegion.forward(100);
         gridpane.add(imageRegion, 0, 0);
         // Text area for CSS editor 
         textarea.setWrapText(true);

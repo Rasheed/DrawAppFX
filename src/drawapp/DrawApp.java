@@ -17,10 +17,11 @@ public class DrawApp extends Application {
     public void start(Stage stage) throws IOException
     {
         MainWindow mw=new MainWindow(stage);
-        ImagePanel imagePanel = mw.getImagePanel();
+        
+        /*ImagePanel imagePanel = mw.getImagePanel();
         Reader reader = new InputStreamReader(System.in);
         Parser parser = new Parser(reader,imagePanel,mw);
-        parser.parseWithButtons(mw.getNext(),mw.getComplete());
+        parser.parseWithButtons(mw.getNext(),mw.getComplete());*/
         //parser.parse();
         stage.show();
     }
