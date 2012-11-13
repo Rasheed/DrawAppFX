@@ -92,6 +92,16 @@ public void setColour(Color colour)
       rect.setFill(Paint.valueOf("00000000"));
       image.getChildren().add(rect);
   }
+  
+  public void fillRoundRect(int x1, int y1, int x2, int y2,int r)
+  {
+      Rectangle rect = new Rectangle(x1,y1,x2,y2);
+      rect.setArcWidth(r);
+      rect.setArcHeight(r);
+      rect.setFill(colorst);
+      image.getChildren().add(rect);
+      colorst=Color.BLACK;
+  }
 public void drawRect(int x1, int y1, int x2, int y2)
 {
 Rectangle rect = new Rectangle(x1,y1,x2,y2);
