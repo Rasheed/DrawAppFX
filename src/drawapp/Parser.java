@@ -4,7 +4,6 @@ import drawapp.ImagePanel;
 import drawapp.MainWindow;
 import drawapp.ParseException;
 import drawapp.ParseException;
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -15,6 +14,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 
 public class Parser
 {
@@ -67,6 +67,7 @@ public class Parser
     if (command.equals("DS")) { drawString(line.substring(3, line.length())); return; }
     if (command.equals("DA")) { drawArc(line.substring(2, line.length())); return; }
     if (command.equals("DO")) { drawOval(line.substring(2, line.length())); return; }
+    if (command.equals("SG")) { setGradient(line.substring(2, line.length())); return; }
 
     throw new ParseException("Unknown drawing command");
   }
@@ -170,21 +171,50 @@ public class Parser
     image.drawString(x,y,s);
   }
 
+  private void setGradient(String args) throws ParseException
+  {
+     StringTokenizer tokenizer = new StringTokenizer(args);
+     String S = getString(tokenizer);
+     String E = getString(tokenizer);
+     Color start = getColour(S);
+     Color end= getColour(E);
+     image.setGradient(start, end);
+     System.out.println(S+E);
+  }
+  
+  private Color getColour(String colourName) throws ParseException
+  {
+    if (colourName.equals("black")) { return (Color.BLACK); }
+    if (colourName.equals("blue")) { return (Color.BLUE); }
+    if (colourName.equals("cyan")) { return(Color.CYAN);}
+    if (colourName.equals("darkgray")) { return(Color.DARKGRAY);}
+    if (colourName.equals("gray")) { return(Color.GRAY);}
+    if (colourName.equals("green")) { return(Color.GREEN);}
+    if (colourName.equals("lightgray")) { return(Color.LIGHTGRAY);}
+    if (colourName.equals("magenta")) { return(Color.MAGENTA);}
+    if (colourName.equals("orange")) { return(Color.ORANGE);}
+    if (colourName.equals("pink")) { return(Color.PINK);}
+    if (colourName.equals("red")) { return(Color.RED);}
+    if (colourName.equals("white")) { return(Color.WHITE);}
+    if (colourName.equals("yellow")) { return(Color.YELLOW);}
+    throw new ParseException("Invalid colour name");
+  }
+  
   private void setColour(String colourName) throws ParseException
   {
-    if (colourName.equals("black")) { image.setColour(Color.black); return;}
-    if (colourName.equals("blue")) { image.setColour(Color.blue); return;}
-    if (colourName.equals("cyan")) { image.setColour(Color.cyan); return;}
-    if (colourName.equals("darkgray")) { image.setColour(Color.darkGray); return;}
-    if (colourName.equals("gray")) { image.setColour(Color.gray); return;}
-    if (colourName.equals("green")) { image.setColour(Color.green); return;}
-    if (colourName.equals("lightgray")) { image.setColour(Color.lightGray); return;}
-    if (colourName.equals("magenta")) { image.setColour(Color.magenta); return;}
-    if (colourName.equals("orange")) { image.setColour(Color.orange); return;}
-    if (colourName.equals("pink")) { image.setColour(Color.pink); return;}
-    if (colourName.equals("red")) { image.setColour(Color.red); return;}
-    if (colourName.equals("white")) { image.setColour(Color.white); return;}
-    if (colourName.equals("yellow")) { image.setColour(Color.yellow); return;}
+    if (colourName.equals("black")) { image.setColour(Color.BLACK); return;}
+    if (colourName.equals("blue")) { image.setColour(Color.BLUE); return;}
+    if (colourName.equals("cyan")) { image.setColour(Color.CYAN); return;}
+    if (colourName.equals("darkgray")) { image.setColour(Color.DARKGRAY); return;}
+    if (colourName.equals("gray")) { image.setColour(Color.GRAY); return;}
+    if (colourName.equals("green")) { image.setColour(Color.GREEN); return;}
+    if (colourName.equals("lightgray")) { image.setColour(Color.LIGHTGRAY); return;}
+    if (colourName.equals("magenta")) { image.setColour(Color.MAGENTA); return;}
+    if (colourName.equals("orange")) { image.setColour(Color.ORANGE); return;}
+    if (colourName.equals("pink")) { image.setColour(Color.PINK); return;}
+    if (colourName.equals("red")) { image.setColour(Color.RED); return;}
+    if (colourName.equals("white")) { image.setColour(Color.WHITE); return;}
+    if (colourName.equals("yellow")) { image.setColour(Color.YELLOW); return;}
     throw new ParseException("Invalid colour name");
   }
   
@@ -194,6 +224,14 @@ public class Parser
       return Integer.parseInt(tokenizer.nextToken());
     else
       throw new ParseException("Missing Integer value");
+  }
+  
+  private String getString(StringTokenizer tokenizer) throws ParseException
+  {
+    if (tokenizer.hasMoreTokens())
+      return tokenizer.nextToken();
+    else
+      throw new ParseException("Missing String value");
   }
 
    public void parseWithButtons(final Button b,final Button complete) throws IOException 

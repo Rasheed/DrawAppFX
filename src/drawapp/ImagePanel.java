@@ -1,12 +1,15 @@
 package drawapp;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Paint;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
@@ -15,7 +18,7 @@ import javafx.scene.text.Text;
 
 public class ImagePanel extends HBox
 {
-  String colorst="000000";
+  Paint colorst=Color.BLACK;
   private HBox hb;
   private Group image=new Group();
   private Graphics graphics;
@@ -50,13 +53,20 @@ public void clear(Color colour)
 {
 setBackgroundColour("00000000");
 }
+
+public void setGradient(Color start, Color finish)
+{
+    Stop[] stops = new Stop[] { new Stop(0, start), new Stop(1, finish)};
+    colorst = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
+}
+
 public void setColour(Color colour)
 {   
-   Integer blue=colour.getBlue();
-   Integer green=colour.getGreen();
-   Integer red=colour.getRed();
-   String hex = String.format("#%02x%02x%02x", red, green, blue);
-   colorst=hex;
+   //Integer blue=colour.getBlue();
+   //Integer green=colour.getGreen();
+   //Integer red=colour.getRed();
+   //String hex = String.format("#%02x%02x%02x", red, green, blue);
+   colorst=colour;
 }
 
   public void drawLine(int x1, int y1, int x2, int y2)
@@ -66,9 +76,9 @@ public void setColour(Color colour)
     line.setStartY(y1);
     line.setEndX(x2);   
     line.setEndY(y2);
-    line.setStroke(Paint.valueOf(colorst));
+    line.setStroke(colorst);
     image.getChildren().add(line);
-    colorst="000000";
+    colorst=Color.BLACK;
   }
 public void drawRect(int x1, int y1, int x2, int y2)
 {
@@ -80,9 +90,9 @@ image.getChildren().add(rect);
 public void fillRect(int x1, int y1, double x2, double y2)
 {
 Rectangle rectFill = new Rectangle(x1,y1,x2,y2);
-rectFill.setFill(Paint.valueOf(colorst));
+rectFill.setFill(colorst);
 image.getChildren().add(rectFill);
-colorst="#000000";
+colorst=Color.BLACK;
 }
 public void drawString(int x, int y, String s)
 {
@@ -92,17 +102,18 @@ image.getChildren().add(t);
 public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle)
 {
 Arc arc = new Arc(x,y,width/2,height/2,startAngle,arcAngle);
-arc.setStroke(Paint.valueOf(colorst));
+arc.setStroke(colorst);
 arc.setFill(Paint.valueOf("00000000"));
 image.getChildren().add(arc);
-colorst="000000";
+colorst=Color.BLACK;
 }
 public void drawOval(int x, int y, int width, int height)
 {
 Ellipse oval = new Ellipse(x,y,width,height);
-oval.setStroke(Paint.valueOf(colorst));
+oval.setStroke(colorst);
 oval.setFill(Paint.valueOf("00000000"));
 image.getChildren().add(oval);
-colorst="000000";
+colorst=Color.BLACK;
 }
+
 }

@@ -91,8 +91,8 @@ public class MainWindow {
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                WritableImage wim = new WritableImage(300, 250);
-                imageRegion.snapshot(null, wim);                
+                WritableImage wim = new WritableImage(DEFAULT_WIDTH,DEFAULT_WIDTH );
+                imageRegion.snapshot(null, wim);          
                 File file = new File("ImageWithEffect.png");
                  try {
                     ImageIO.write(SwingFXUtils.fromFXImage(wim, null), "png", file);
