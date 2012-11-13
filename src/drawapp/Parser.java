@@ -84,6 +84,8 @@ public class Parser
     StringTokenizer tokenizer = new StringTokenizer(args);
     x = getInteger(tokenizer);
     y = getInteger(tokenizer);
+    width=getInteger(tokenizer);
+    height=getInteger(tokenizer);
     if ((x < 0)||(y < 0)) throw new ParseException("Invalid values for Draw Image coommand");
     int position = args.indexOf("@");
     if (position == -1) throw new ParseException("DrawString string is missing");
