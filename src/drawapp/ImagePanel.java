@@ -151,23 +151,4 @@ Image image4 = new Image("file:"+name, width, height, false, false);
  image.setLayoutY(y);
 }
 
-public void startTurtle(int x, int y, int r)
-{
-    turtle = new Turtle(this, x,y,r);
-}
-
-public void forward(int dist)
-{
-     turtle.forward(dist);
-}
-public void turnLeft(int rota)
-{
-    turtle.turnLeft(rota);
-}
-
-public void turnRight(int rota)
-{
-    turtle.turnRight(rota);
-}
-
 }

@@ -21,6 +21,7 @@ public class Parser
   private BufferedReader reader;
   private ImagePanel image;
   private MainWindow frame;
+  private Turtle turtle;
   private int i=0;
 
   public Parser(Reader reader, ImagePanel image, MainWindow frame)
@@ -87,7 +88,7 @@ public class Parser
     StringTokenizer tokenizer = new StringTokenizer(args);
     r = getInteger(tokenizer);
     if (r < 0) throw new ParseException("Invalid values for Line command");
-    image.turnRight(r);
+    turtle.turnRight(r);
   }
   
    private void turnLeft(String args) throws ParseException
@@ -96,7 +97,7 @@ public class Parser
     StringTokenizer tokenizer = new StringTokenizer(args);
     r = getInteger(tokenizer);
     if (r < 0) throw new ParseException("Invalid values for Line command");
-    image.turnLeft(r);
+    turtle.turnLeft(r);
   }
   
   private void forward(String args) throws ParseException
@@ -105,7 +106,7 @@ public class Parser
     StringTokenizer tokenizer = new StringTokenizer(args);
     d = getInteger(tokenizer);
     if (d < 0) throw new ParseException("Invalid values for Line command");
-    image.forward(d);
+    turtle.forward(d);
   }
   
   private void startTurtle(String args) throws ParseException
@@ -118,7 +119,7 @@ public class Parser
     y1 = getInteger(tokenizer);
     r = getInteger(tokenizer);
     if ((x1 < 0)||(y1 < 0)||(r < 0)) throw new ParseException("Invalid values for Line command");
-    image.startTurtle(x1,y1,r);
+    turtle = new Turtle(image,x1,y1,r);
   }
   
   private void drawRoundRect(String args) throws ParseException
