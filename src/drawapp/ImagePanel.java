@@ -23,11 +23,8 @@ import javafx.scene.transform.Translate;
 public class ImagePanel extends HBox
 {
   Paint colorst=Color.BLACK;
+  Turtle turtle;
   private HBox hb;
-  Rectangle turtle = new Rectangle(10,10,10,10);
-  int turtlex=0;
-  int turtley=0;
-  double rot=0;
   private Group image=new Group();
   private Graphics graphics;
 
@@ -154,42 +151,23 @@ Image image4 = new Image("file:"+name, width, height, false, false);
  image.setLayoutY(y);
 }
 
-//TURTLE
-
-public void startTurtle(int x,int y, int rota)
+public void startTurtle(int x, int y, int r)
 {
-    turtlex=x;
-    turtley=y;
-    Translate t= new Translate(x,y);
-    turtle.setRotate(rota);
-    rot=rota;
-    turtle.setFill(colorst);
-    image.getChildren().add(turtle);
-    image.getTransforms().add(t);
-    colorst=Color.BLACK;
+    turtle = new Turtle(this, x,y,r);
 }
 
 public void forward(int dist)
 {
-     rot= (rot*Math.PI)/180;
-     double sine = Math.sin(rot);
-     double cosine = Math.cos(rot);
-     double deltaX = cosine * dist;
-     double deltaY = sine * dist;
-     
-     Translate t=new Translate(deltaX,deltaY);
-     image.getTransforms().add(t);
-     
-     rot = (rot*180)/Math.PI;
+     turtle.forward(dist);
+}
+public void turnLeft(int rota)
+{
+    turtle.turnLeft(rota);
 }
 
-/*public void turnLeft(int rota)
+public void turnRight(int rota)
 {
-    double radians = Math.toRadians(rota);
-    rot = rot-radians;
-    Rotate r = new Rotate(-rota);
-    turtle.getTransforms().add(r);
-    //turtle.setRotate(rota);
-}*/
+    turtle.turnRight(rota);
+}
 
 }

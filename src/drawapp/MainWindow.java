@@ -68,9 +68,11 @@ public class MainWindow {
         //Adding ImagePanel
         imageRegion = new ImagePanel(600,400);
         imageRegion.setStyle(cssDefault);
-        imageRegion.startTurtle(50, 20, 30);//TESTER
+        //imageRegion.startTurtle(50, 20, 30);//TESTER
         //imageRegion.turnLeft(30);
-        imageRegion.forward(100);
+        //imageRegion.forward(100);
+        
+        
         gridpane.add(imageRegion, 0, 0);
         // Text area for CSS editor 
         textarea.setWrapText(true);
@@ -96,7 +98,7 @@ public class MainWindow {
             public void handle(ActionEvent event) {
                 WritableImage wim = new WritableImage(DEFAULT_WIDTH,DEFAULT_WIDTH );
                 imageRegion.snapshot(null, wim);          
-                File file = new File("ImageWithEffect.png");
+                File file = new File("Image.png");
                  try {
                     ImageIO.write(SwingFXUtils.fromFXImage(wim, null), "png", file);
                  } catch (Exception s) 

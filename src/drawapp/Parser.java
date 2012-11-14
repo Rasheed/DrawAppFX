@@ -74,9 +74,29 @@ public class Parser
     if (command.equals("RF")) { fillRoundRect(line.substring(2, line.length())); return; }
     if (command.equals("ST")) { startTurtle(line.substring(2, line.length())); return; }
     if (command.equals("FT")) { forward(line.substring(2, line.length())); return; }
+    if (command.equals("TL")) { turnLeft(line.substring(2, line.length())); return; }
+    if (command.equals("TR")) { turnRight(line.substring(2, line.length())); return; }
     
 
     throw new ParseException("Unknown drawing command");
+  }
+  
+  private void turnRight(String args) throws ParseException
+  {
+    int r = -1;
+    StringTokenizer tokenizer = new StringTokenizer(args);
+    r = getInteger(tokenizer);
+    if (r < 0) throw new ParseException("Invalid values for Line command");
+    image.turnRight(r);
+  }
+  
+   private void turnLeft(String args) throws ParseException
+  {
+    int r = -1;
+    StringTokenizer tokenizer = new StringTokenizer(args);
+    r = getInteger(tokenizer);
+    if (r < 0) throw new ParseException("Invalid values for Line command");
+    image.turnLeft(r);
   }
   
   private void forward(String args) throws ParseException
