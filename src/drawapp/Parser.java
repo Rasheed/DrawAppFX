@@ -1,9 +1,5 @@
 package drawapp;
 
-import drawapp.ImagePanel;
-import drawapp.MainWindow;
-import drawapp.ParseException;
-import drawapp.ParseException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -77,9 +73,24 @@ public class Parser
     if (command.equals("FT")) { forward(line.substring(2, line.length())); return; }
     if (command.equals("TL")) { turnLeft(line.substring(2, line.length())); return; }
     if (command.equals("TR")) { turnRight(line.substring(2, line.length())); return; }
+    if (command.equals("SD")) { setDimension(line.substring(2, line.length())); return; }
     
 
     throw new ParseException("Unknown drawing command");
+  }
+  
+  private void setDimension (String args) throws ParseException
+  {
+      int width=-1;
+      int height = -1;
+      StringTokenizer tokenizer = new StringTokenizer(args);
+      width = getInteger(tokenizer);
+      height = getInteger(tokenizer);
+      if((width<0)||(height<0)) throw new ParseException ("Invalid values for the scene dimension command.");
+
+      frame.getStage().setWidth(width);
+      frame.getStage().setHeight(height);
+      frame.changeSize(width,height);
   }
   
   private void turnRight(String args) throws ParseException

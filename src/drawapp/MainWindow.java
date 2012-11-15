@@ -35,6 +35,7 @@ public class MainWindow {
     public static final int DEFAULT_HEIGHT = 600;
 
     Scene scene;
+    private Stage Pstage;
     ImagePanel imageRegion;
     ImagePanel pictureRegion2 = new ImagePanel(600,50);
     String cssDefault = "-fx-border-color: black;\n"
@@ -47,12 +48,14 @@ public class MainWindow {
     Button completeButton = new Button("Complete");
 
 
-    public MainWindow(Stage stage) {
+    public MainWindow(Stage stage) 
+    {
         this(stage, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
     public MainWindow(Stage primaryStage, int width, int height) {
         primaryStage.setTitle("DrawApp");
+        Pstage=primaryStage;
         Group root = new Group();
         scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         GridPane gridpane = buildGUI();
@@ -69,8 +72,6 @@ public class MainWindow {
         imageRegion = new ImagePanel(600,400);
         imageRegion.setStyle(cssDefault);
         //imageRegion.startTurtle(50, 20, 30);//TESTER
-        //imageRegion.turnLeft(30);
-        //imageRegion.forward(100);
         
         
         gridpane.add(imageRegion, 0, 0);
@@ -135,4 +136,15 @@ public class MainWindow {
     {
         textarea.setText(s);
     }
+    
+    public Stage getStage()
+    {
+        return Pstage;
+    }
+    public void changeSize(int width,int height){
+      imageRegion.setPrefHeight(height-200);
+      imageRegion.setPrefWidth(width);
+      textarea.setPrefWidth(width);
+      pictureRegion2.setPrefWidth(width);
+  }
 }
