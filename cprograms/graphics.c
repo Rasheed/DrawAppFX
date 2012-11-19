@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include "graphics.h"
+
+void drawLine(int x1, int x2, int x3, int x4)
+{
+  printf("DL %i %i %i %i\n", x1, x2, x3, x4);
+}
+
+void drawRect(int x1, int x2, int x3, int x4)
+{
+  printf("DR %i %i %i %i\n", x1, x2, x3, x4);
+}
+
+void drawOval(int x, int y, int width, int height)
+{
+  printf("DO %i %i %i %i\n",x,y,width,height);
+}
+
+void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle)
+{
+  printf("DA %i %i %i %i %i %i\n",x,y,width,height, startAngle, arcAngle);
+}
+
+void fillRect(int x1, int x2, int x3, int x4)
+{
+  printf("FR %i %i %i %i\n", x1, x2, x3, x4);
+}
+
+void drawString(char* s, int x, int y)
+{
+  printf("DS %i %i @%s\n",x,y,s);
+}
+
+void drawImage(int x,int y,int width,int height,char* name)
+{
+ printf("DI %i %i %i %i @%s\n",x,y,width,height,name);
+}
+
+void drawRoundRect(int x1, int x2, int x3, int x4,int r)
+{
+  printf("RR %i %i %i %i %i\n", x1, x2, x3, x4, r);
+}
+
+void fillRoundRect(int x1, int x2, int x3, int x4,int r)
+{
+  printf("RF  %i %i %i %i %i\n", x1, x2, x3, x4, r);
+}
+
+void startTurtle(int x,int y,int rot)
+{
+  printf("ST  %i %i %i\n", x, y, rot);
+}
+
+void forward(int d)
+{
+  printf("FT  %i\n", d);
+}
+
+void turnLeft(int a)
+{
+  printf("TL  %i\n",a);
+}
+
+void turnRight(int a)
+{
+  printf("TR  %i\n",a);
+}
+
+void setDimension(int w, int h)
+{
+  printf("SD  %i %i\n",w, h);
+}
+
+void setColour(colour c)
+{
+  char* colourName;
+  switch(c)
+  {
+    case black : colourName = "black"; break;
+    case blue : colourName = "blue"; break;
+    case cyan : colourName = "cyan"; break;
+    case darkgray : colourName = "darkgray"; break;
+    case gray : colourName = "gray"; break;
+    case green : colourName = "green"; break;
+    case lightgray : colourName = "lightgray"; break;
+    case magenta : colourName = "magenta"; break;
+    case orange : colourName = "orange"; break;
+    case pink : colourName = "pink"; break;
+    case red : colourName = "red"; break;
+    case white : colourName = "white"; break;
+    case yellow : colourName = "yellow"; break;
+  }
+  printf("SC %s\n", colourName);
+}
+
+void setGradient(colour s,colour f)
+{
+  char* startColour;
+  char* endColour;
+  switch(s)
+  {
+    case black : startColour = "black"; break;
+    case blue : startColour = "blue"; break;
+    case cyan : startColour = "cyan"; break;
+    case darkgray : startColour = "darkgray"; break;
+    case gray : startColour = "gray"; break;
+    case green : startColour = "green"; break;
+    case lightgray : startColour = "lightgray"; break;
+    case magenta : startColour = "magenta"; break;
+    case orange : startColour = "orange"; break;
+    case pink : startColour = "pink"; break;
+    case red : startColour = "red"; break;
+    case white : startColour = "white"; break;
+    case yellow : startColour = "yellow"; break;
+  }
+   switch(f)
+  {
+    case black : endColour = "black"; break;
+    case blue : endColour = "blue"; break;
+    case cyan : endColour = "cyan"; break;
+    case darkgray : endColour = "darkgray"; break;
+    case gray : endColour = "gray"; break;
+    case green : endColour = "green"; break;
+    case lightgray : endColour = "lightgray"; break;
+    case magenta : endColour = "magenta"; break;
+    case orange : endColour = "orange"; break;
+    case pink : endColour = "pink"; break;
+    case red : endColour = "red"; break;
+    case white : endColour = "white"; break;
+    case yellow : endColour = "yellow"; break;
+  }
+  printf("SG %s %s\n", startColour,endColour);
+}
