@@ -66,6 +66,16 @@ void turnRight(int a)
   printf("TR  %i\n",a);
 }
 
+void penUp()
+{
+  printf("PU  \n");
+}
+
+void penDown()
+{
+  printf("PD  \n");
+}
+
 void setDimension(int w, int h)
 {
   printf("SD  %i %i\n",w, h);

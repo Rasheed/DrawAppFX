@@ -19,3 +19,5 @@ void startTurtle(int,int,int);
 void forward(int);
 void turnLeft(int);
 void turnRight(int);
+void penUp();
+void penDown();

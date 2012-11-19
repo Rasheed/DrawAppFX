@@ -6,4 +6,4 @@ Task 3) Display image function has been added as shown in the drawImage.c file t
 	DSL functions were added to the graphics library
 Task 4) Set Dimension function added as shown in setDim.c, space is left to show the textbox and buttons.
 	Save button has been added and saves a snapshot of the imagepanel to Image.jpg in the current path.
-Task 5) Turtle draws lines and updates co-ordinates, penup/pendown functions not implemented.  
+Task 5) Turtle draws lines and updates co-ordinates, turtle.c draws two sqares using the turtle graphics functions only. 
