@@ -69,7 +69,7 @@ public class Parser
     if (command.equals("DI")) { drawImage(line.substring(3, line.length())); return; }
     if (command.equals("RR")) { drawRoundRect(line.substring(2, line.length())); return; }
     if (command.equals("RF")) { fillRoundRect(line.substring(2, line.length())); return; }
-    if (command.equals("ST")) { frame.completeButton.setDisable(true);startTurtle(line.substring(2, line.length())); return; }
+    if (command.equals("ST")) { frame.nextButton.setDisable(true);startTurtle(line.substring(2, line.length())); return; }
     if (command.equals("FT")) { forward(line.substring(2, line.length())); return; }
     if (command.equals("TL")) { turnLeft(line.substring(2, line.length())); return; }
     if (command.equals("TR")) { turnRight(line.substring(2, line.length())); return; }
@@ -132,6 +132,7 @@ public class Parser
     y1 = getInteger(tokenizer);
     r = getInteger(tokenizer);
     if ((x1 < 0)||(y1 < 0)||(r < 0)) throw new ParseException("Invalid values for Line command");
+    frame.postMessage("Turtle started, press complete to draw image");
     turtle = new Turtle(image,x1,y1,r);
   }
   
