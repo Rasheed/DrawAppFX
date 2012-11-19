@@ -69,10 +69,12 @@ public class Parser
     if (command.equals("DI")) { drawImage(line.substring(3, line.length())); return; }
     if (command.equals("RR")) { drawRoundRect(line.substring(2, line.length())); return; }
     if (command.equals("RF")) { fillRoundRect(line.substring(2, line.length())); return; }
-    if (command.equals("ST")) { startTurtle(line.substring(2, line.length())); return; }
+    if (command.equals("ST")) { frame.completeButton.setDisable(true);startTurtle(line.substring(2, line.length())); return; }
     if (command.equals("FT")) { forward(line.substring(2, line.length())); return; }
     if (command.equals("TL")) { turnLeft(line.substring(2, line.length())); return; }
     if (command.equals("TR")) { turnRight(line.substring(2, line.length())); return; }
+    if (command.equals("PU")) { penUp(); return; }
+    if (command.equals("PD")) { penDown(); return; }
     if (command.equals("SD")) { setDimension(line.substring(2, line.length())); return; }
     
 
@@ -398,5 +400,12 @@ public class Parser
                 }        
             }
         });
+    }
+
+    private void penUp() {
+turtle.penUp();    }
+
+    private void penDown() {
+turtle.penDown();
     }
 }

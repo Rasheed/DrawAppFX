@@ -4,8 +4,12 @@
  */
 package drawapp;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 
 /**
  *
@@ -14,17 +18,21 @@ import javafx.scene.shape.Line;
 public class Turtle extends Ellipse 
 {
 //TURTLE
-//Rectangle turtle = new Rectangle(10,10,10,10);
-Ellipse turtle = new Ellipse(20,10);
+Color lineCol = Color.rgb(0, 0, 0);
+Path path= new Path();
+Ellipse turtle;
   double turtlex=0;
   double turtley=0;
-  double rot=0;
-  
+  double rot=0;  
   ImagePanel image;
   
   public Turtle(ImagePanel image,int x, int y, int r) 
   {
       this.image = image;
+      MoveTo mt = new MoveTo(x,y);
+      //LineTo line = new LineTo(x,y);
+      path.getElements().addAll(mt);
+      image.getChildren().add(path);
       Integer xI=x;
       Integer yI=y;
       turtlex=xI.doubleValue();
@@ -44,9 +52,8 @@ public void forward(int dist)
      double cosine = Math.cos(rot);
      double deltaX = cosine * dist;
      double deltaY = sine * dist;
-     
-     Line line = new Line(turtlex, turtley, (turtlex+deltaX), (turtley+deltaY));
-     image.getChildren().add(line);
+     LineTo line = new LineTo((turtlex+deltaX), (turtley+deltaY));
+     path.getElements().add(line);
      turtlex = turtlex +deltaX;
      turtley = turtley +deltaY;
      
@@ -56,13 +63,22 @@ public void forward(int dist)
 public void turnLeft(int rota)
 {
     rot = rot-rota;
-    turtle.setRotate(rot);
+    //turtle.setRotate(rot);
 }
 
 public void turnRight(int rota)
 {
     rot = rot+rota;
-    turtle.setRotate(rot);
+    //turtle.setRotate(rot);
+}
+
+public void penUp()
+{
+    System.out.println("penup");
+}
+public void penDown()
+{
+    System.out.println("penDown");
 }
     
 }
