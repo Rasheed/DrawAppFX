@@ -98,7 +98,7 @@ public class Parser
     int r = -1;
     StringTokenizer tokenizer = new StringTokenizer(args);
     r = getInteger(tokenizer);
-    if (r < 0) throw new ParseException("Invalid values for Line command");
+    if (r < 0) throw new ParseException("Invalid turning values");
     turtle.turnRight(r);
   }
   
@@ -107,7 +107,7 @@ public class Parser
     int r = -1;
     StringTokenizer tokenizer = new StringTokenizer(args);
     r = getInteger(tokenizer);
-    if (r < 0) throw new ParseException("Invalid values for Line command");
+    if (r < 0) throw new ParseException("Invalid turning values");
     turtle.turnLeft(r);
   }
   

@@ -37,7 +37,7 @@ public class MainWindow {
     Scene scene;
     private Stage Pstage;
     ImagePanel imageRegion;
-    ImagePanel pictureRegion2 = new ImagePanel(600,50);
+    ImagePanel buttonRegion = new ImagePanel(600,50);
     String cssDefault = "-fx-border-color: black;\n"
                 + "-fx-border-insets: 5;\n"
                 + "-fx-border-width: 0;\n";
@@ -75,7 +75,7 @@ public class MainWindow {
         
         
         gridpane.add(imageRegion, 0, 0);
-        // Text area for CSS editor 
+        // Text area
         textarea.setWrapText(true);
         textarea.setPrefWidth(600);
         textarea.setPrefHeight(150);
@@ -84,8 +84,8 @@ public class MainWindow {
         postMessage("Drawing Completed!!");
         
 
-        pictureRegion2.setAlignment(Pos.CENTER);
-        pictureRegion2.setBackgroundColour("#E8E8E8");
+        buttonRegion.setAlignment(Pos.CENTER);
+        buttonRegion.setBackgroundColour("#E8E8E8");
 
         closeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -104,14 +104,15 @@ public class MainWindow {
                     ImageIO.write(SwingFXUtils.fromFXImage(wim, null), "png", file);
                  } catch (Exception s) 
                  {
+                     s.printStackTrace();
                 }
             }
         });
-        pictureRegion2.add(completeButton);
-        pictureRegion2.add(nextButton);
-        pictureRegion2.add(closeButton);
-        pictureRegion2.add(saveButton);
-        gridpane.add(pictureRegion2, 0, 2);
+        buttonRegion.add(completeButton);
+        buttonRegion.add(nextButton);
+        buttonRegion.add(closeButton);
+        buttonRegion.add(saveButton);
+        gridpane.add(buttonRegion, 0, 2);
         return gridpane;
     }
     
@@ -144,7 +145,7 @@ public class MainWindow {
       imageRegion.setPrefWidth(width);
       textarea.setPrefWidth(width);
       textarea.setPrefHeight(100);
-      pictureRegion2.setPrefWidth(width);
-      pictureRegion2.setPrefHeight(100);
+      buttonRegion.setPrefWidth(width);
+      buttonRegion.setPrefHeight(100);
   }
 }

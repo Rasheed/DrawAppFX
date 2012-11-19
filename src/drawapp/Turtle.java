@@ -25,15 +25,11 @@ Ellipse turtle = new Ellipse(20,10);
   public Turtle(ImagePanel image,int x, int y, int r) 
   {
       this.image = image;
-      //image.getChildren().add(turtle);
       Integer xI=x;
       Integer yI=y;
       turtlex=xI.doubleValue();
       turtley=yI.doubleValue();
-      //Translate t= new Translate(x,y);
-      //turtle.setRotate(r);
       rot=r;
-      //image.getTransforms().add(t);
   }
 
 public void startTurtle(int x,int y, int rota)
@@ -49,11 +45,8 @@ public void forward(int dist)
      double deltaX = cosine * dist;
      double deltaY = sine * dist;
      
-     //System.out.println()
      Line line = new Line(turtlex, turtley, (turtlex+deltaX), (turtley+deltaY));
      image.getChildren().add(line);
-     //Translate t=new Translate(deltaX,deltaY);
-     //image.getTransforms().add(t);
      turtlex = turtlex +deltaX;
      turtley = turtley +deltaY;
      
