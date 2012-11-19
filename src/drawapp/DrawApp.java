@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import drawapp.ImagePanel;
 import java.io.IOException;
 
 public class DrawApp extends Application {

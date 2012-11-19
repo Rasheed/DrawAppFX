@@ -112,9 +112,6 @@ public class MainWindow {
         pictureRegion2.add(closeButton);
         pictureRegion2.add(saveButton);
         gridpane.add(pictureRegion2, 0, 2);
-        
-        
-
         return gridpane;
     }
     
@@ -141,10 +138,13 @@ public class MainWindow {
     {
         return Pstage;
     }
+    
     public void changeSize(int width,int height){
       imageRegion.setPrefHeight(height-200);
       imageRegion.setPrefWidth(width);
       textarea.setPrefWidth(width);
+      textarea.setPrefHeight(100);
       pictureRegion2.setPrefWidth(width);
+      pictureRegion2.setPrefHeight(100);
   }
 }
