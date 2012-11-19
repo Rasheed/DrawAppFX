@@ -15,7 +15,7 @@ import javafx.scene.shape.Path;
  *
  * @author Rasheed
  */
-public class Turtle extends Ellipse 
+public class Turtle
 {
 //TURTLE
 Color lineCol = Color.rgb(0, 0, 0);
@@ -25,12 +25,15 @@ Ellipse turtle;
   double turtley=0;
   double rot=0;  
   ImagePanel image;
+    private boolean pen=true;
   
   public Turtle(ImagePanel image,int x, int y, int r) 
   {
       this.image = image;
       MoveTo mt = new MoveTo(x,y);
       //LineTo line = new LineTo(x,y);
+      path.setTranslateX(x);
+      path.setTranslateY(y);
       path.getElements().addAll(mt);
       image.getChildren().add(path);
       Integer xI=x;
@@ -52,8 +55,16 @@ public void forward(int dist)
      double cosine = Math.cos(rot);
      double deltaX = cosine * dist;
      double deltaY = sine * dist;
+     if(pen)
+     {
      LineTo line = new LineTo((turtlex+deltaX), (turtley+deltaY));
      path.getElements().add(line);
+     }
+     else
+     {
+     MoveTo line = new MoveTo((turtlex+deltaX), (turtley+deltaY));
+     path.getElements().add(line);  
+     }
      turtlex = turtlex +deltaX;
      turtley = turtley +deltaY;
      
@@ -74,11 +85,11 @@ public void turnRight(int rota)
 
 public void penUp()
 {
-    System.out.println("penup");
+    this.pen=false;
 }
 public void penDown()
 {
-    System.out.println("penDown");
+    this.pen=true;
 }
     
 }

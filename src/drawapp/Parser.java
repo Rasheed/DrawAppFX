@@ -73,8 +73,8 @@ public class Parser
     if (command.equals("FT")) { forward(line.substring(2, line.length())); return; }
     if (command.equals("TL")) { turnLeft(line.substring(2, line.length())); return; }
     if (command.equals("TR")) { turnRight(line.substring(2, line.length())); return; }
-    if (command.equals("PU")) { penUp(); return; }
-    if (command.equals("PD")) { penDown(); return; }
+    if (command.equals("PU")) { turtle.penUp(); return; }
+    if (command.equals("PD")) { turtle.penDown(); return; }
     if (command.equals("SD")) { setDimension(line.substring(2, line.length())); return; }
     
 
@@ -400,12 +400,5 @@ public class Parser
                 }        
             }
         });
-    }
-
-    private void penUp() {
-turtle.penUp();    }
-
-    private void penDown() {
-turtle.penDown();
     }
 }
