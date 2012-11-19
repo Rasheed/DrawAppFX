@@ -89,7 +89,7 @@ public class Parser
       if((width<0)||(height<0)) throw new ParseException ("Invalid values for the scene dimension command.");
 
       frame.getStage().setWidth(width);
-      frame.getStage().setHeight(height);
+      frame.getStage().setHeight(height+200);
       frame.changeSize(width,height);
   }
   
